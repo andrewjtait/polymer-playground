@@ -7,7 +7,7 @@
     <link rel="import" href="sui-checkbox.html">
   </head>
   <body>
-    <sui-tffm data='[{
+    <sui-tffm id="tffm" data='[{
         "forename": "David",
         "surname": "Smith",
         "subscribed": true
@@ -17,10 +17,24 @@
         "subscribed": false
       }]'>
       <template>
-        <sui-input value="{{data.forename}}"></sui-input>
+        <sui-input class="foo" value="{{data.forename}}"></sui-input>
         <sui-input value="{{data.surname}}"></sui-input>
         <sui-checkbox checked="{{data.subscribed}}"></sui-checkbox>
       </template>
     </sui-tffm>
+
+    <script>
+      var dom = Polymer.dom(document);
+      var tffm = dom.querySelector('#tffm');
+      var inputs = tffm.getElementsByClassName('foo');
+      tffm.addEventListener('data-changed', function() {
+        console.log("tffm updated!");
+      });
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('value-changed', function() {
+          console.log("updated!");
+        });
+      }
+    </script>
   </body>
 </html>

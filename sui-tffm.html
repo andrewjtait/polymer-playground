@@ -24,7 +24,8 @@
       properties: {
         data: {
           type: Array,
-          observer: 'dataChanged'
+          observer: 'dataChanged',
+          notify: true
         }
       },
 
@@ -33,7 +34,7 @@
       },
 
       _forwardInstancePath: function(inst, path, value) {
-        inst.dataHost._parentProps = [];
+        inst.dataHost._parentProps = inst.dataHost.properties;
       },
 
       buildRow: function(data) {
