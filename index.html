@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <link rel="import" href="sui-input.html">
+    <link rel="import" href="sui-tffm.html">
+    <link rel="import" href="sui-checkbox.html">
+  </head>
+  <body>
+    <sui-tffm id="hi" foo="bar">
+      <template id="row">
+        <sui-input value="{{forename}}"></sui-input>
+        <sui-input value="{{surname}}"></sui-input>
+        <sui-checkbox value="{{subscribed}}"></sui-checkbox>
+      </template>
+    </sui-tffm>
+  </body>
+</html>

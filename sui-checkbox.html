@@ -1,0 +1,19 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+
+<dom-module id="sui-checkbox">
+
+  <template>
+    <template is="dom-if" if="{{label}}">
+      <label><span>{{label}}</span>:</label>
+    </template>
+
+    <input type="checkbox" checked="{{value}}" name="{{name}}">
+  </template>
+
+  <script>
+    Polymer({
+      is: "sui-checkbox"
+    });
+  </script>
+  
+</dom-module>

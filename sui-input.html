@@ -1,0 +1,25 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/iron-input/iron-input.html">
+
+<dom-module id="sui-input">
+
+  <template>
+    <template is="dom-if" if="{{label}}">
+      <label><span>{{label}}</span>:</label>
+    </template>
+
+    <input is="iron-input" bind-value="{{value}}" name="{{name}}">
+  </template>
+
+  <script>
+    Polymer({
+      is: "sui-input",
+      properties: {
+        value: {
+          notify: true
+        }
+      }
+    });
+  </script>
+  
+</dom-module>

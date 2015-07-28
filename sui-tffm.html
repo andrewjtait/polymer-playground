@@ -1,0 +1,52 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+
+<dom-module id="sui-tffm">
+
+  <template>
+    <content></content>
+    <template is="dom-repeat" items="{{users}}">
+      <span>{{buildRow(item)}}</span>
+    </template>
+    <div id="tableRows"></div>
+  </template>
+
+  <script>
+    Polymer({
+      is: "sui-tffm",
+      behaviors: [
+        Polymer.Templatizer
+      ],
+      properties: {
+        users: {
+          type: Array,
+          observer: 'usersChanged'
+        }
+      },
+      ready: function() {
+        this.users = [{
+          _id: 1,
+          forename: 'Bob',
+          surname: 'Smith',
+          subscribed: false
+        }, {
+          _id: 2,
+          forename: 'Mike',
+          surname: 'Holmes',
+          subscribed: true
+        } ];
+      },
+      usersChanged: function() {
+        console.log("foo");
+        this.$.tableRows.innerHTML = "";
+      },
+      buildRow: function(user) {
+        var dom = Polymer.dom(this);
+        var tpl = dom.querySelector('#row');
+        this.templatize(tpl);
+        var inst = this.stamp(user);
+        this.$.tableRows.appendChild(inst.root);
+      }
+    });
+  </script>
+  
+</dom-module>
