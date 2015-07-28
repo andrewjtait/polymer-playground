@@ -1,5 +1,4 @@
 <link rel="import" href="bower_components/polymer/polymer.html">
-<link rel="import" href="bower_components/iron-input/iron-input.html">
 
 <dom-module id="sui-input">
 
@@ -8,7 +7,7 @@
       <label><span>{{label}}</span>:</label>
     </template>
 
-    <input is="iron-input" bind-value="{{value}}" name="{{name}}">
+    <input value="{{value::input}}" name="{{name}}">
   </template>
 
   <script>

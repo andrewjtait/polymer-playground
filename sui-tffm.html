@@ -4,47 +4,51 @@
 
   <template>
     <content></content>
-    <template is="dom-repeat" items="{{users}}">
+    <template is="dom-repeat" items="{{data}}">
       <span>{{buildRow(item)}}</span>
     </template>
-    <div id="tableRows"></div>
+    <table>
+      <tbody id="rows">
+      </tbody>
+    </table>
   </template>
 
   <script>
     Polymer({
       is: "sui-tffm",
+
       behaviors: [
         Polymer.Templatizer
       ],
+
       properties: {
-        users: {
+        data: {
           type: Array,
-          observer: 'usersChanged'
+          observer: 'dataChanged'
         }
       },
-      ready: function() {
-        this.users = [{
-          _id: 1,
-          forename: 'Bob',
-          surname: 'Smith',
-          subscribed: false
-        }, {
-          _id: 2,
-          forename: 'Mike',
-          surname: 'Holmes',
-          subscribed: true
-        } ];
+
+      dataChanged: function() {
+        this.$.rows.innerHTML = "";
       },
-      usersChanged: function() {
-        console.log("foo");
-        this.$.tableRows.innerHTML = "";
+
+      _forwardInstancePath: function(inst, path, value) {
+        inst.dataHost._parentProps = [];
       },
-      buildRow: function(user) {
-        var dom = Polymer.dom(this);
-        var tpl = dom.querySelector('#row');
+
+      buildRow: function(data) {
+        var tpl = Polymer.dom(this).querySelector('template');
         this.templatize(tpl);
-        var inst = this.stamp(user);
-        this.$.tableRows.appendChild(inst.root);
+        var inst = this.stamp({data: data});
+
+        var tr = document.createElement('tr');
+        var length = inst.root.children.length;
+        for (var i = 0; i < length; i++) {
+          var td = document.createElement('td');
+          td.appendChild(inst.root.children[0]);
+          tr.appendChild(td);
+        }
+        this.$.rows.appendChild(tr);
       }
     });
   </script>

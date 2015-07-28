@@ -7,12 +7,18 @@
       <label><span>{{label}}</span>:</label>
     </template>
 
-    <input type="checkbox" checked="{{value}}" name="{{name}}">
+    <input type="checkbox" checked="{{checked::change}}" name="{{name}}">
   </template>
 
   <script>
     Polymer({
-      is: "sui-checkbox"
+      is: "sui-checkbox",
+      properties: {
+        checked: {
+          type: Boolean,
+          notify: true
+        }
+      }
     });
   </script>
   

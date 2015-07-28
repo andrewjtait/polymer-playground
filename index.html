@@ -7,11 +7,19 @@
     <link rel="import" href="sui-checkbox.html">
   </head>
   <body>
-    <sui-tffm id="hi" foo="bar">
-      <template id="row">
-        <sui-input value="{{forename}}"></sui-input>
-        <sui-input value="{{surname}}"></sui-input>
-        <sui-checkbox value="{{subscribed}}"></sui-checkbox>
+    <sui-tffm data='[{
+        "forename": "David",
+        "surname": "Smith",
+        "subscribed": true
+      }, {
+        "forename": "Sarah",
+        "surname": "Dwight",
+        "subscribed": false
+      }]'>
+      <template>
+        <sui-input value="{{data.forename}}"></sui-input>
+        <sui-input value="{{data.surname}}"></sui-input>
+        <sui-checkbox checked="{{data.subscribed}}"></sui-checkbox>
       </template>
     </sui-tffm>
   </body>
